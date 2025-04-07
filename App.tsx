@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React, { useState } from "react";
+import AppLoading from "expo-app-loading";
+import * as Font from "expo-font";
+import Home from "../SauveTonFrigo/SRC/Componant/Home";
+
+const fetchFonts = () => {
+	return Font.loadAsync({
+		"JetBrainsMono-Regular": require("../SauveTonFrigo/SRC/assets/font/JetBrainsMono-Regular.ttf"),
+	});
+};
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	const [fontLoaded, setFontLoaded] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	if (!fontLoaded) {
+		return (
+			<AppLoading
+				startAsync={fetchFonts}
+				onFinish={() => setFontLoaded(true)}
+				onError={console.warn}
+			/>
+		);
+	}
+
+	return <Home />;
+}
