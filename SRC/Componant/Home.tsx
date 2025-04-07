@@ -1,12 +1,5 @@
 import React from "react";
-import {
-	ScrollView,
-	Image,
-	View,
-	Text,
-	StyleSheet,
-	Button,
-} from "react-native";
+import { ScrollView, Image, Text, StyleSheet, Button } from "react-native";
 import STF from "../assets/logo_STF.png";
 
 function Home() {
@@ -27,7 +20,7 @@ function Home() {
 			<Button
 				title="Commencer maintenant"
 				onPress={() => {
-					// entrer l'effet du boutton
+					// entrer l'effet du boutton à la place du console.log
 					console.log("Bouton cliqué !");
 				}}
 			/>

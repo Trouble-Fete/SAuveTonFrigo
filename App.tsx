@@ -1,8 +1,8 @@
-// App.js
+// App.tsx
 import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
-import Home from "../SauveTonFrigo/SRC/Componant/Home";
+import Navigation from "../SauveTonFrigo/Navigation";
 
 const fetchFonts = () => {
 	return Font.loadAsync({
@@ -23,5 +23,5 @@ export default function App() {
 		);
 	}
 
-	return <Home />;
+	return <Navigation />;
 }
