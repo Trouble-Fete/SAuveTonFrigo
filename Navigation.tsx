@@ -1,6 +1,6 @@
 // Navigation.tsx
-import type React from "react";
-import { Text } from "react-native";
+// biome-ignore lint/style/useImportType: <explanation>
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import {
 	createNativeStackNavigator,
@@ -8,19 +8,12 @@ import {
 } from "@react-navigation/native-stack";
 import Home from "./SRC/Componant/Home";
 import MonFrigo from "./SRC/Componant/MonFrigo/MonFrigo";
+import NouveauProduit from "./SRC/Componant/NouveauProduit/NouveauProduit"; // Assurez-vous que ce composant existe
 import Layout from "./Layout";
-
-// Si tu as déjà un fichier types.ts qui exporte RootStackParamList, importe-le.
-// Sinon, définis-le ici :
-export type RootStackParamList = {
-	Home: undefined;
-	MonFrigo: undefined;
-	About: undefined;
-};
+import type { RootStackParamList } from "./SRC/Componant/types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-// Définition des props pour le wrapper qui inclut la Navbar via Layout.
 interface ScreenWithNavbarProps {
 	navigation: NativeStackNavigationProp<
 		RootStackParamList,
@@ -41,14 +34,12 @@ const Navigation: React.FC = () => {
 		<NavigationContainer>
 			<Stack.Navigator
 				screenOptions={{
-					// On désactive le header natif pour utiliser notre Navbar personnalisée
-					headerShown: false,
+					headerShown: false, // Désactive le header natif pour utiliser notre Navbar personnalisée
 				}}
 			>
 				<Stack.Screen
 					name="Home"
-					// La fonction children reçoit un objet { navigation, route }.
-					// Ici, nous utilisons uniquement navigation.
+					// biome-ignore lint/correctness/noChildrenProp: <explanation>
 					children={({ navigation }) => (
 						<ScreenWithNavbar navigation={navigation}>
 							<Home />
@@ -58,6 +49,7 @@ const Navigation: React.FC = () => {
 				/>
 				<Stack.Screen
 					name="MonFrigo"
+					// biome-ignore lint/correctness/noChildrenProp: <explanation>
 					children={({ navigation }) => (
 						<ScreenWithNavbar navigation={navigation}>
 							<MonFrigo />
@@ -66,14 +58,14 @@ const Navigation: React.FC = () => {
 					options={{ title: "Ton Frigo" }}
 				/>
 				<Stack.Screen
-					name="Connexion"
+					name="NouveauProduit"
+					// biome-ignore lint/correctness/noChildrenProp: <explanation>
 					children={({ navigation }) => (
 						<ScreenWithNavbar navigation={navigation}>
-							{/* Exemple d'écran About */}
-							<Text style={{ padding: 20, fontSize: 18 }}>Page À propos</Text>
+							<NouveauProduit />
 						</ScreenWithNavbar>
 					)}
-					options={{ title: "Connexion" }}
+					options={{ title: "Ajouter un produit" }}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>

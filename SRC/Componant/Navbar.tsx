@@ -1,8 +1,8 @@
-// Navbar.tsx
-import type React from "react";
+// biome-ignore lint/style/useImportType: <explanation>
+import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "../../types"; // ajuste le chemin si nécessaire
+import type { RootStackParamList } from "./types.js";
 
 interface NavbarProps {
 	navigation: NativeStackNavigationProp<
@@ -20,8 +20,8 @@ const Navbar: React.FC<NavbarProps> = ({ navigation }) => {
 			<TouchableOpacity onPress={() => navigation.navigate("MonFrigo")}>
 				<Text style={styles.navText}>Mon Frigo</Text>
 			</TouchableOpacity>
-			<TouchableOpacity onPress={() => navigation.navigate("Connexion")}>
-				<Text style={styles.navText1}>Connexion</Text>
+			<TouchableOpacity onPress={() => navigation.navigate("NouveauProduit")}>
+				<Text style={styles.navText1}>Nouveau produit</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -32,7 +32,10 @@ const styles = StyleSheet.create({
 		backgroundColor: "#3F6C7D",
 		flexDirection: "row",
 		justifyContent: "space-around",
+		alignItems: "center",
 		paddingVertical: 10,
+		// Ajustez la hauteur en fonction de vos besoins
+		height: 60,
 	},
 	navText: {
 		color: "white",
@@ -41,9 +44,8 @@ const styles = StyleSheet.create({
 	},
 	navText1: {
 		color: "white",
-		backgroundColor: "red",
-		paddingHorizontal: 10,
-		paddingVertical: 5,
+		fontSize: 16,
+		fontFamily: "JetBrainsMono-Regular",
 	},
 });
 

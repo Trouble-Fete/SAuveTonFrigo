@@ -2,8 +2,12 @@
 	"extends": "expo/tsconfig.base",
 	"compilerOptions": {
 		"strict": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"skipLibCheck": true,
 		"moduleResolution": "node16",
-		"esModuleInterop": true
+		"module": "Node16",
+		"typeRoots": ["./types", "./node_modules/@types"]
 	},
-	"include": ["src", "SRC/images.d.ts"]
+	"include": ["SRC", "types"]
 }

@@ -1,27 +1,42 @@
-// App.tsx
-import React, { useState } from "react";
-import AppLoading from "expo-app-loading";
+import React, { useCallback, useEffect, useState } from "react";
+import { View } from "react-native";
+import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import Navigation from "../SauveTonFrigo/Navigation";
 
-const fetchFonts = () => {
-	return Font.loadAsync({
-		"JetBrainsMono-Regular": require("../SauveTonFrigo/SRC/assets/font/JetBrainsMono-Regular.ttf"),
-	});
-};
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-	const [fontLoaded, setFontLoaded] = useState(false);
+	const [appIsReady, setAppIsReady] = useState(false);
 
-	if (!fontLoaded) {
-		return (
-			<AppLoading
-				startAsync={fetchFonts}
-				onFinish={() => setFontLoaded(true)}
-				onError={console.warn}
-			/>
-		);
+	useEffect(() => {
+		async function prepare() {
+			try {
+				await Font.loadAsync({
+					"JetBrainsMono-Regular": require("../SauveTonFrigo/SRC/assets/font/JetBrainsMono-Regular.ttf"),
+				});
+			} catch (e) {
+				console.warn(e);
+			} finally {
+				setAppIsReady(true);
+			}
+		}
+		prepare();
+	}, []);
+
+	const onLayoutRootView = useCallback(async () => {
+		if (appIsReady) {
+			await SplashScreen.hideAsync();
+		}
+	}, [appIsReady]);
+
+	if (!appIsReady) {
+		return null;
 	}
 
-	return <Navigation />;
+	return (
+		<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+			<Navigation />
+		</View>
+	);
 }
