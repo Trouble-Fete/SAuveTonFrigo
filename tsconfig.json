@@ -2,12 +2,20 @@
 	"extends": "expo/tsconfig.base",
 	"compilerOptions": {
 		"strict": true,
+		"baseUrl": ".",
+		"paths": {
+			"@react-navigation/native-stack": [
+				"node_modules/@react-navigation/native-stack"
+			]
+		},
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"skipLibCheck": true,
-		"moduleResolution": "node16",
-		"module": "Node16",
-		"typeRoots": ["./types", "./node_modules/@types"]
+		"moduleResolution": "nodenext",
+		"module": "nodenext",
+		"jsx": "react-native",
+		"typeRoots": ["./types", "./node_modules/@types"],
+		"allowImportingTsExtensions": true // Ajoutez cette ligne
 	},
-	"include": ["SRC", "types"]
+	"include": ["src/**/*", "types/**/*"]
 }

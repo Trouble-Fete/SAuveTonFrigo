@@ -8,19 +8,21 @@
 		"userInterfaceStyle": "light",
 		"newArchEnabled": true,
 		"splash": {
-			"image": "./assets/splash-icon.png",
+			"image": "./SRC/assets/splash-icon.png",
 			"resizeMode": "contain",
 			"backgroundColor": "#ffffff"
 		},
-		"ios": {
-			"supportsTablet": true,
-			"infoPlist": {
-				"NSCameraUsageDescription": "Cette application a besoin d'accéder à la caméra pour prendre des photos."
-			}
-		},
-		"android": {
+		"expo": {
+			"ios": {
+				"infoPlist": {
+					"NSPhotoLibraryUsageDescription": "Cette application a besoin d'accéder à votre bibliothèque de photos pour télécharger des images."
+				}
+			},
+			"android": {
+				"permissions": ["READ_EXTERNAL_STORAGE"]
+			},
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/adaptive-icon.png",
+				"foregroundImage": "./SRC/assets/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
 			}
 		},
@@ -28,5 +30,8 @@
 			"favicon": "../SauveTonFrigo/SRC/assets/favicon.png"
 		},
 		"plugins": ["expo-font"]
+	},
+	"android": {
+		"package": "com.anonymous.SauveTonFrigo"
 	}
 }

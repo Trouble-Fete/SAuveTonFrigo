@@ -30,6 +30,7 @@ declare module "expo-camera" {
 
 	// Déclarez Camera comme un composant React utilisable en JSX
 	export class Camera extends React.Component<CameraProps> {
+		static default: typeof Camera;
 		static requestCameraPermissionsAsync(): Promise<{
 			status: "granted" | "denied";
 		}>;

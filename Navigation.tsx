@@ -10,6 +10,7 @@ import Home from "./SRC/Componant/Home";
 import MonFrigo from "./SRC/Componant/MonFrigo/MonFrigo";
 import NouveauProduit from "./SRC/Componant/NouveauProduit/NouveauProduit"; // Assurez-vous que ce composant existe
 import Layout from "./Layout";
+import TestComponent from "./SRC/Componant/TestComponent";
 import type { RootStackParamList } from "./SRC/Componant/types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -58,11 +59,11 @@ const Navigation: React.FC = () => {
 					options={{ title: "Ton Frigo" }}
 				/>
 				<Stack.Screen
-					name="NouveauProduit"
+					name="TestComponent"
 					// biome-ignore lint/correctness/noChildrenProp: <explanation>
 					children={({ navigation }) => (
 						<ScreenWithNavbar navigation={navigation}>
-							<NouveauProduit />
+							<TestComponent />
 						</ScreenWithNavbar>
 					)}
 					options={{ title: "Ajouter un produit" }}
