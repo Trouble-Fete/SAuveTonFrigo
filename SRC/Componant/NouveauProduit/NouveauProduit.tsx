@@ -1,8 +1,7 @@
-import type React from "react";
-import CameraTestComponent from "./MyCamera.tsx";
+import { Text } from "react-native";
 
-const NouveauProduit: React.FC = () => {
-	return <CameraTestComponent />;
-};
+function NouveauProduit() {
+	return <Text>Merci à tous pour ces 5 derniers mois!!!!</Text>;
+}
 
 export default NouveauProduit;

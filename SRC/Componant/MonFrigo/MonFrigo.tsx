@@ -88,15 +88,20 @@ const MonFrigo = () => {
 					Tu retrouves tes produits de ton frigo, surveille leur date de
 					consommation.
 				</Text>
-				<Button title="Ajouter un Produit" onPress={() => openModal()} />
+				<TouchableOpacity
+					style={styles.addProductButton}
+					onPress={() => openModal()}
+				>
+					<Text style={styles.buttonText}>Ajouter un Produit</Text>
+				</TouchableOpacity>
 				{products.map((product) => (
 					<TouchableOpacity
 						key={product.id}
 						style={styles.productItem}
 						onPress={() => openModal(product)}
 					>
-						<Text>{product.name}</Text>
-						<Text>
+						<Text style={styles.textPage}>{product.name}</Text>
+						<Text style={styles.textPage1}>
 							Date de péremption: {product.expirationDate.toLocaleDateString()}
 						</Text>
 						{product.image && (
@@ -116,7 +121,7 @@ const MonFrigo = () => {
 				onRequestClose={() => setModalVisible(false)}
 			>
 				<View style={styles.modalContainer}>
-					<Text>Nom du Produit</Text>
+					<Text style={styles.nameProduct}>Nom du Produit</Text>
 					<TextInput
 						style={styles.input}
 						value={currentProduct.name}
@@ -124,17 +129,23 @@ const MonFrigo = () => {
 							setCurrentProduct({ ...currentProduct, name: text })
 						}
 					/>
-					<Button title="Prendre une Photo" onPress={pickImage} />
+					<TouchableOpacity style={styles.button} onPress={pickImage}>
+						<Text style={styles.buttonText}>Prendre une Photo</Text>
+					</TouchableOpacity>
 					{currentProduct.image && (
 						<Image
 							source={{ uri: currentProduct.image }}
 							style={styles.image}
 						/>
 					)}
-					<Button
-						title="Sélectionner la Date de Péremption"
+					<TouchableOpacity
+						style={styles.button}
 						onPress={() => setShowDatePicker(true)}
-					/>
+					>
+						<Text style={styles.buttonText}>
+							Sélectionner la Date de Péremption
+						</Text>
+					</TouchableOpacity>
 					{showDatePicker && (
 						<DateTimePicker
 							value={currentProduct.expirationDate}
@@ -158,25 +169,65 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: "100%",
 	},
+	button: {
+		backgroundColor: "#3F6C7D",
+		padding: 10,
+		borderRadius: 5,
+		marginVertical: 10,
+	},
+	textPage: {
+		color: "white",
+		fontFamily: "JetBrainsMono-Variable",
+		fontSize: 20,
+	},
+	textPage1: {
+		color: "white",
+		fontFamily: "JetBrainsMono-Variable",
+		fontSize: 16,
+	},
+	addProductButton: {
+		color: "white",
+		marginTop: 40,
+		fontSize: 24,
+		padding: 10,
+		width: 200,
+		marginHorizontal: "auto",
+		borderRadius: 5,
+		backgroundColor: "#3F6C7D",
+		justifyContent: "center",
+		alignItems: "center",
+	},
 	content: {
 		padding: 20,
+	},
+	nameProduct: {
+		color: "white",
+		marginBottom: 10,
+		fontSize: 18,
+		fontFamily: "JetBrainsMono-Variable",
+	},
+	buttonText: {
+		color: "white",
+		fontSize: 18,
+		fontFamily: "JetBrainsMono-Variable",
 	},
 	text1: {
 		color: "#294651",
 		fontFamily: "JetBrainsMono-Variable",
 		fontSize: 24,
 		fontWeight: "bold",
-		marginBottom: 20,
-		marginTop: 20,
+		marginTop: 120,
 	},
 	text: {
 		color: "#294651",
 		fontFamily: "JetBrainsMono-Variable",
 		fontSize: 18,
 		marginBottom: 10,
+		marginTop: 50,
 		fontWeight: "bold",
 	},
 	modalContainer: {
+		fontFamily: "JetBrainsMono-Variable",
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
@@ -184,23 +235,31 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		height: 40,
-		borderColor: "gray",
+		borderColor: "white",
+		fontFamily: "JetBrainsMono-Variable",
 		borderWidth: 1,
 		margin: 10,
 		paddingHorizontal: 8,
 		width: "80%",
+		color: "white",
+		marginBottom: 20,
 	},
 	image: {
 		width: 200,
 		height: 200,
 		margin: 20,
+		marginBottom: 20,
 	},
 	productItem: {
 		margin: 10,
+		fontFamily: "JetBrainsMono-Variable",
+		color: "white",
 		padding: 10,
 		borderWidth: 1,
 		borderColor: "#ccc",
 		borderRadius: 5,
+
+		backgroundColor: "rgba(0, 0, 0, 0.5)",
 	},
 	productImage: {
 		width: 50,

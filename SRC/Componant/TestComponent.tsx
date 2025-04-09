@@ -1,49 +1,59 @@
-import type React from "react";
-import { useState } from "react";
-import { View, StyleSheet, Text, Button, Image } from "react-native";
-import * as ImagePicker from "expo-image-picker";
+import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
 
-const PhotoUploadComponent: React.FC = () => {
-	const [image, setImage] = useState<string | null>(null);
-
-	const pickImage = async () => {
-		// Demander la permission d'accéder à la galerie
-		const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-		if (status !== "granted") {
-			alert("Permission pour accéder à la galerie refusée!");
-			return;
-		}
-
-		// Ouvrir le sélecteur d'images
-		const result = await ImagePicker.launchImageLibraryAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.Images,
-			allowsEditing: true,
-			aspect: [4, 3],
-			quality: 1,
-		});
-
-		if (!result.canceled) {
-			setImage(result.assets[0].uri);
-		}
-	};
-
+function NouveauProduit() {
 	return (
-		<View style={styles.container}>
-			<Button title="Sélectionner une photo" onPress={pickImage} />
-			{image && (
-				<Image
-					source={{ uri: image }}
-					style={styles.image}
-					resizeMode="contain"
-				/>
-			)}
-		</View>
+		<SafeAreaView style={styles.safeArea}>
+			<ScrollView>
+				<Text style={styles.textTitle}>
+					Merci à tous pour ces 5 derniers mois!!!!
+				</Text>
+				<View style={styles.container}>
+					<Text style={styles.text}>
+						Pour commencer, Merci à la Wild pour le contenu de la formation
+					</Text>
+					<Text style={styles.text}>
+						Pour continuer, Merci a mes collègues de formation, leur partage de
+						leurs connaissances et compétences fut une richesse pour moi et je
+						pense pour les tout le monde!
+					</Text>
+					<Text style={styles.text}>
+						Pour continuer, Merci a la Table 3, qui aura été presente tout le
+						long de la formation, certes avec quelques suspension, masi faut
+						bine s'ouvrir aux autres!
+					</Text>
+					<Text style={styles.text}>
+						Pour finir, Merci a Abdou et Flo qui ont été vraiment de tres bon
+						pedagogue, et surtout toujours un esprit bienveillant. Ne changez
+						pas les gars, car votre pedagogie est vraiment top pour les adultes!
+					</Text>
+				</View>
+			</ScrollView>
+		</SafeAreaView>
 	);
-};
+}
 
 const styles = StyleSheet.create({
-	container: { flex: 1, alignItems: "center", justifyContent: "center" },
-	image: { width: 300, height: 300, marginTop: 20 },
+	safeArea: {
+		flex: 1,
+		backgroundColor: "#3F6C7D",
+	},
+	textTitle: {
+		color: "white",
+		fontFamily: "JetBrainsMono-Variable",
+		fontSize: 20,
+		marginTop: 40,
+		textAlign: "center",
+	},
+	text: {
+		color: "white",
+		fontFamily: "JetBrainsMono-Variable",
+		fontSize: 20,
+		textAlign: "left",
+		marginBottom: 10,
+	},
+	container: {
+		marginTop: 40,
+		marginHorizontal: 20,
+	},
 });
-
-export default PhotoUploadComponent;
+export default NouveauProduit;
