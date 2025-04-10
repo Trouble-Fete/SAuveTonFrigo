@@ -66,7 +66,7 @@ const Navigation: React.FC = () => {
 							<TestComponent />
 						</ScreenWithNavbar>
 					)}
-					options={{ title: "Ajouter un produit" }}
+					options={{ title: "About" }}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>

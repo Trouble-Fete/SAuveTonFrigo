@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ navigation }) => {
 				<Text style={styles.navText}>Mon Frigo</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => navigation.navigate("TestComponent")}>
-				<Text style={styles.navText1}>Nouveau produit</Text>
+				<Text style={styles.navText1}>About</Text>
 			</TouchableOpacity>
 		</View>
 	);

@@ -2,6 +2,6 @@
 export type RootStackParamList = {
 	Home: undefined;
 	MonFrigo: undefined;
-	NouveauProduit: undefined;
+	About: undefined;
 	TestComponent: undefined;
 };
